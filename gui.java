@@ -11,13 +11,14 @@ public class GUI implements ActionListener {
     private JPanel panel;
     private ImageIcon image1;
     ArrayList<JButton> holePositions = new ArrayList<JButton>();
-    Fox newGame = new Fox("name", 1);
+    Fox newGame = new Fox("name", (int)(Math.random() * (5) ));
+    private int rows = 1;
+    private int cols;
+    private boolean endGame;
 
-
-    public GUI() {
+    public GUI(int cols) {
         frame = new JFrame();
-        int rows = 1;
-        int cols = 5;
+        this.cols = cols;
 
 
 //        JButton button  = new JButton("Click me");
@@ -45,6 +46,7 @@ public class GUI implements ActionListener {
 //                    label.setText("Number of clicks: " + count);
                     if (getHole(button)+1 == newGame.getFoxHoleLocation()) {
                         label.setText("C");
+                        endGame = true;
                     }
                     newGame.move();
                 }
@@ -66,6 +68,14 @@ public class GUI implements ActionListener {
     public int getHole(JButton o) {
         return holePositions.indexOf(o);
     }
+
+//    public void setHole(int cols){
+//        this.cols = cols;
+//    }
+//
+//    public boolean isEndGame() {
+//        return endGame;
+//    }
 
 //    public static void main(String[] args) {
 //        new GUI();
