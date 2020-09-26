@@ -11,6 +11,8 @@ public class GUI implements ActionListener {
     private JPanel panel;
     private ImageIcon image1;
     ArrayList<JButton> holePositions = new ArrayList<JButton>();
+    Fox newGame = new Fox("name", 1);
+
 
     public GUI() {
         frame = new JFrame();
@@ -36,6 +38,18 @@ public class GUI implements ActionListener {
             button.setBorder(new RoundedBorder(30));
             panel.add(button);
             holePositions.add(button);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+//                    count++;
+//                    label.setText("Number of clicks: " + count);
+                    if (getHole(button)+1 == newGame.getFoxHoleLocation()) {
+                        label.setText("C");
+                    }
+                    newGame.move();
+                }
+            });
+
         }
 
 
@@ -53,24 +67,28 @@ public class GUI implements ActionListener {
         return holePositions.indexOf(o);
     }
 
-    public static void main(String[] args) {
-        new GUI();
-        Fox newGame = new Fox("name", 1);
-
-//        holePositions.get(1).addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                count++;
-//                label.setText("Number of clicks: " + count);
+//    public static void main(String[] args) {
+//        new GUI();
+//        Fox newGame = new Fox("name", 1);
 //
-//            }
-//        });
-
-//        HolesLayout gt = new HolesLayout(1, 5);
-    }
+////        holePositions.get(1).addActionListener(new ActionListener() {
+////            public void actionPerformed(ActionEvent e) {
+////                count++;
+////                label.setText("Number of clicks: " + count);
+////
+////            }
+////        });
+//
+////        HolesLayout gt = new HolesLayout(1, 5);
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        count++;
-        label.setText("Number of clicks: " + count);
+//        count++;
+//        label.setText("Number of clicks: " + count);
+//        if (getHole((JButton) e.getSource()) == newGame.getFoxHoleLocation()) {
+//            label.setText("caught");
+//        }
+//        newGame.move();
     }
 }
