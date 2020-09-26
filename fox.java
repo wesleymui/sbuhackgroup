@@ -11,52 +11,66 @@ could be in based on your selections so far. You win if he has no where
 left to hide. If you give up, click the button and one possible path the f
 ox could have taken to avoid your inspections will be shown */
 
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.Random;
 
 public class Fox {
-  private int foxHole;
-  private ArrayList<String> arr = new ArrayList(5);
-  private int userMove;
-  private int location;
+  private String foxName;
+  //foxHoleLocation represents hole number, 0 is leftmost, 4 is rightmost
+  private int foxHoleLocation;
+  private ArrayList<Integer> foxHistory = new ArrayList<Integer>();
 
   /*Constructor that creates the fox object, takes name of fox and initial
   location as parameters */
-  public Fox(String foxHole, int location) {
-    this.foxHole = foxHole;
-    arr.add(location, foxHole);
+  public Fox(String foxName, int location) {
+    this.foxName = foxName;
+    foxHoleLocaation = location;
+    foxHistory.add(location);
   }
 
-  public int getHoles() {
-    return arr.size();
+  public String getFoxName(){
+    return foxName;
   }
-  //Method for fox to move either left or right
-  public void move() {
+  
+  public int getFoxHoleLocation() {
+    return foxHoleLocation;
+  }
+  
+  public int getUserChoiceLocation(){
+    return userChoiceLocation;
+  }
+  
+  public ArrayList<Integer> getFoxHistory(){
+    return foxHistory;
+  }
+ 
+  
+  //Method for fox to move 
+  public void move() 
+  {
+    Random random = new Random();
+    
     //conditions if fox is on the left/rightmost hole
-    if(arr.indexOf(foxHole) == arr.size() - 1) {
-      arr.remove(foxHole);
-      arr.add(arr.size() - 2, foxHole);
-    } else if(arr.indexOf(foxHole) == 0) {
-      arr.remove(foxHole);
-      arr.add(1, foxHole);
+    if (foxHoleLocation == 0)
+      foxHoleLocation++;
+    else if (foxHoleLocation == 4)
+      foxHoleLocation--;
+    //if fox is in middle
+    else
+    {
+      //randomly chooses 0 or 1
+      if (random.nextInt(2) == 0)
+        foxHoleLocation--;
+      else
+        foxHoleLocation++;
     }
-    int random = (int)(Math.random() * 2);
-    //If random is 0, fox moves left, else it moves right.
-    if (random == 0) {
-      arr.add(arr.indexOf(foxHole) - 1, foxHole);
-      arr.remove(arr.lastIndexOf(foxHole));
-    }
-    else {
-      arr.add(arr.indexOf(foxHole) + 1, foxHole);
-      arr.remove(arr.indexOf(foxHole));
-    }
+    foxHistory.add(foxHoleLocation);
   }
 
-  //Checks if the users move is the location of the fox
-  public boolean isCaught(int userMove) {
-    if(userMove == arr.indexOf(foxHole) - 1) {
+  //Checks if input userMove is equal to fox's location
+  public boolean isCaught(int userMove) 
+  {
+    if(userMove == foxHoleLocation)
       return true;
-    }
     return false;
   }
 }
