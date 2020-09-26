@@ -16,8 +16,7 @@ public class playMusic {
 				music.start();
 				music.loop(music.LOOP_CONTINUOUSLY);
 				
-				while(true) {
-				}
+				JOptionPane.showMessageDialog(null, "If you don't like the music... click the 'ok' button to mute!");
 			}else {
 				System.out.println("File Not Found");
 			}
