@@ -15,9 +15,6 @@ public class playMusic {
 				music.open(audioInput);
 				music.start();
 				music.loop(music.LOOP_CONTINUOUSLY);
-				
-				while(true) {
-				}
 			}else {
 				System.out.println("File Not Found");
 			}
