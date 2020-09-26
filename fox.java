@@ -35,10 +35,6 @@ public class Fox {
     return foxHoleLocation;
   }
   
-  public int getUserChoiceLocation(){
-    return userChoiceLocation;
-  }
-  
   public ArrayList<Integer> getFoxHistory(){
     return foxHistory;
   }
