@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class main {
 
@@ -6,5 +7,42 @@ public class main {
 		backgroundMusic.MusicPlayer("test.wav");
 		
 	}
-
+	
+	public static void startGame()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Input fox name: ");
+		
+		String userInput = sc.nextLink();
+		
+		int userInputFoxChoice;
+		
+		Fox newGame = new Fox(userInput);
+		
+		while (!newGame.getFoxFound)
+		{
+			System.out.println("Enter where you think the fox is: ");
+			try
+			{
+				userInputFoxChoice = Integer.parseInt(sc.nextLine());
+			}
+			catch (Exception e)
+			{
+				System.out.println("Invalid choice");
+				continue;
+			}
+			
+			if (newGame.isCaught(userInputFoxChoice))
+			{
+				System.out.println("Congratulations, you caught the fox. ");
+				break;
+			}
+			else
+			{
+				System.out.println("The fox was not in that hole. It has run away into a different hole now. ");
+				newGame.move();
+			}
+		}
+		sc.close();
+	}
 }
